@@ -17,6 +17,23 @@ patterns = {
 }
 
 
+def convert(string: str) -> int | float | bool | str:
+    # regular expressions adapted (in part) from:
+    # https://docs.python.org/3/library/re.html#simulating-scanf
+    if re.compile(r'^[-+]?\d+$').match(string):
+        return int(string)
+    elif re.compile(r'^[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?$').match(string):
+        return float(string.replace('d', 'e').replace('D', 'e'))
+    elif re.compile(r'^t|true|[.]true[.]$', re.IGNORECASE).match(string):
+        return True
+    elif re.compile(r'^f|false|[.]false[.]$', re.IGNORECASE).match(string):
+        return False
+    elif len(re.split('[ ,]', string)) > 1 and '-' not in string:
+        return list(map(int, re.split('[ ,]', string)))
+    else:
+        return string
+
+
 def extract_comments(string: str) -> list[str]:
     return [
         match.group().strip()
@@ -41,3 +58,17 @@ def extract_blocks(string: str) -> list[str]:
         match.group().strip()
         for match in re.finditer(patterns['block'], string)
     ]
+
+
+def parse_parameters(parameters: list[str]) -> dict:
+    return {
+        match.group('parameter'): convert(match.group('value'))
+        for match in map(patterns['parameter'].match, parameters)
+    }
+
+
+def parse_blocks(blocks: list[str]) -> list[dict]:
+    return {
+        match.group('block'): match.group('contents').strip()
+        for match in map(patterns['block'].match, blocks)
+    }
