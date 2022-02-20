@@ -1,6 +1,8 @@
 from __future__ import annotations
 import re
 
+import numpy as np
+
 
 patterns = {
     'comment': re.compile(
@@ -13,7 +15,22 @@ patterns = {
     'block': re.compile(
         r'[ \t]*begin[ \t]+(?P<block>\w+)(?P<contents>.+)\s+end[ \t]+(?P=block)',
         re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
+    ),
+    'unit_cell': re.compile(
+        r'((?P<units>bohr|ang)\s+)?'
+        r'(?P<lattice_vectors>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
+    'atoms': re.compile(
+        r'((?P<units>bohr|ang)\s+)?'
+        r'(?P<atoms>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
+    'projections': re.compile(
+        r'((?P<units>bohr|ang)\s+)?'
+        r'(?P<projections>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
 }
 
 
@@ -71,4 +88,52 @@ def parse_blocks(blocks: list[str]) -> list[dict]:
     return {
         match.group('block'): match.group('contents').strip()
         for match in map(patterns['block'].match, blocks)
+    }
+
+
+def parse_unit_cell(string: str) -> dict:
+    match = patterns['unit_cell'].search(string)
+
+    if match is not None:
+        return {
+            'units': match.group('units'),
+            'lattice_vectors': np.fromstring(match.group('lattice_vectors'), sep='\n').reshape((3, 3)),
+        }
+    else:
+        return None
+
+
+def parse_atoms(string: str) -> dict:
+    match = patterns['atoms'].search(string)
+
+    if match is not None:
+        return {
+            'units': match.group('units'),
+            'atoms': [
+                {
+                    'species': line.split()[0],
+                    'basis_vector': np.fromiter(map(float, line.split()[1:]), dtype=float),
+                }
+                for line in match.group('atoms').splitlines()
+            ]
+        }
+    else:
+        return None
+
+
+def parse_projections(string: str) -> dict:
+    match = patterns['projections'].search(string)
+
+    if match is not None:
+        return {
+            'units': match.group('units'),
+            'projections': match.group('projections').splitlines(),
+        }
+    else:
+        return None
+
+
+def parse_kpoints(string: str) -> dict:
+    return {
+        'kpoints': np.fromstring(string, sep='\n').reshape((-1, 3))
     }

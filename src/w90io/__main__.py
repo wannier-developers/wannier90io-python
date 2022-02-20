@@ -13,13 +13,30 @@ def parse_win(args):
     blocks = w90io._win.extract_blocks(contents)
 
     if args.extract_only:
-        pprint.pprint(comments)
-        pprint.pprint(parameters)
-        pprint.pprint(blocks)
+        pprint.pprint({
+            'comments': comments,
+            'parameters': parameters,
+            'blocks': blocks,
+        })
     else:
-        pprint.pprint(comments)
-        pprint.pprint(w90io._win.parse_parameters(parameters))
-        pprint.pprint(w90io._win.parse_blocks(blocks))
+        parameters = w90io._win.parse_parameters(parameters)
+        blocks = w90io._win.parse_blocks(blocks)
+
+        parsed_win = {
+            'comments': comments,
+            'parameters': parameters,
+            'blocks': blocks,
+            'unit_cell': w90io._win.parse_unit_cell(blocks['unit_cell_cart']),
+            'kpoints': w90io._win.parse_kpoints(blocks['kpoints']),
+        }
+        if 'atoms_cart' in blocks:
+            parsed_win['atoms_cart'] = w90io._win.parse_atoms(blocks['atoms_cart'])
+        if 'atoms_frac' in blocks:
+            parsed_win['atoms_frac'] = w90io._win.parse_atoms(blocks['atoms_frac'])
+        if 'projections' in blocks:
+            parsed_win['projections'] = w90io._win.parse_projections(blocks['projections'])
+
+        pprint.pprint(parsed_win)
 
 
 def main():
