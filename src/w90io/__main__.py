@@ -1,7 +1,7 @@
 import argparse
 import pprint
 
-import w90io._win
+import w90io
 
 
 def parse_win(args):
@@ -19,23 +19,7 @@ def parse_win(args):
             'blocks': blocks,
         })
     else:
-        parameters = w90io._win.parse_parameters(parameters)
-        blocks = w90io._win.parse_blocks(blocks)
-
-        parsed_win = {
-            'comments': comments,
-            'parameters': parameters,
-            'blocks': blocks,
-            'unit_cell': w90io._win.parse_unit_cell(blocks['unit_cell_cart']),
-            'kpoints': w90io._win.parse_kpoints(blocks['kpoints']),
-        }
-        if 'atoms_cart' in blocks:
-            parsed_win['atoms_cart'] = w90io._win.parse_atoms(blocks['atoms_cart'])
-        if 'atoms_frac' in blocks:
-            parsed_win['atoms_frac'] = w90io._win.parse_atoms(blocks['atoms_frac'])
-        if 'projections' in blocks:
-            parsed_win['projections'] = w90io._win.parse_projections(blocks['projections'])
-
+        parsed_win = w90io.parse_win(contents)
         pprint.pprint(parsed_win)
 
 
