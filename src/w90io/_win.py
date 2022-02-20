@@ -4,6 +4,16 @@ import re
 import numpy as np
 
 
+expressions = {
+    'float': r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?',
+    '3-vector': (
+        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t]+'
+        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t]+'
+        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?'
+    )
+}
+
+
 patterns = {
     'comment': re.compile(
         r'(!|#)[ \t]*(?P<comment>.+)\n',
@@ -18,12 +28,14 @@ patterns = {
     ),
     'unit_cell': re.compile(
         r'((?P<units>bohr|ang)\s+)?'
-        r'(?P<lattice_vectors>.+)',
+        rf'(?P<a1>{expressions["3-vector"]})\s+'
+        rf'(?P<a2>{expressions["3-vector"]})\s+'
+        rf'(?P<a3>{expressions["3-vector"]})',
         re.IGNORECASE | re.DOTALL
     ),
     'atoms': re.compile(
         r'((?P<units>bohr|ang)\s+)?'
-        r'(?P<atoms>.+)',
+        rf'(?P<atoms>([ \t]*\w+[ \t]+{expressions["3-vector"]}\s*)+)',
         re.IGNORECASE | re.DOTALL
     ),
     'projections': re.compile(
@@ -95,9 +107,14 @@ def parse_unit_cell(string: str) -> dict:
     match = patterns['unit_cell'].search(string)
 
     if match is not None:
+        a1 = np.fromstring(match.group('a1'), sep=' ')
+        a2 = np.fromstring(match.group('a2'), sep=' ')
+        a3 = np.fromstring(match.group('a3'), sep=' ')
+
         return {
             'units': match.group('units'),
-            'lattice_vectors': np.fromstring(match.group('lattice_vectors'), sep='\n').reshape((3, 3)),
+            'a1': a1, 'a2': a2, 'a3': a3,
+            'lattice_vectors': np.array([a1, a2, a3]),
         }
     else:
         return None
