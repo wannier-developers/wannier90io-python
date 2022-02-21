@@ -1,10 +1,14 @@
+from __future__ import annotations
+
+from . import _core
+from . import _nnkp
 from . import _win
 
 
 def parse_win(string: str) -> dict:
-    comments = _win.extract_comments(string)
-    parameters = _win.parse_parameters(_win.extract_parameters(string))
-    blocks = _win.parse_blocks(_win.extract_blocks(string))
+    comments = _core.extract_comments(string)
+    parameters = _core.parse_parameters(_core.extract_parameters(string))
+    blocks = _core.parse_blocks(_core.extract_blocks(string))
 
     parsed_win = {
         'comments': comments,
@@ -23,3 +27,19 @@ def parse_win(string: str) -> dict:
         parsed_win['kpoints'] =_win.parse_kpoints(blocks['kpoints'])
 
     return parsed_win
+
+
+def parse_nnkp(string: str) -> dict:
+    comments = _core.extract_comments(string)
+    parameters = _core.parse_parameters(_core.extract_parameters(string))
+    blocks = _core.parse_blocks(_core.extract_blocks(string))
+
+    parsed_nnkp = {
+        'comments': comments,
+        'parameters': parameters,
+        'blocks': blocks,
+        'direct_lattice': _nnkp.parse_direct_lattice(blocks['real_lattice']),
+        'reciprocal_lattice': _nnkp.parse_reciprocal_lattice(blocks['recip_lattice']),
+    }
+
+    return parsed_nnkp
