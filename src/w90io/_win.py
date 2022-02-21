@@ -57,8 +57,11 @@ def convert(string: str) -> int | float | bool | str:
         return True
     elif re.compile(r'^f|false|[.]false[.]$', re.IGNORECASE).match(string):
         return False
-    elif len(re.split('[ ,]', string)) > 1 and '-' not in string:
-        return list(map(int, re.split('[ ,]', string)))
+    elif re.compile(expressions['3-vector']).match(string):
+        try:
+            return list(map(int, re.split('[ ,]', string)))
+        except ValueError:
+            return np.array(list(map(float, re.split('[ ,]', string))))
     else:
         return string
 
@@ -98,7 +101,7 @@ def parse_parameters(parameters: list[str]) -> dict:
 
 def parse_blocks(blocks: list[str]) -> list[dict]:
     return {
-        match.group('block'): match.group('contents').strip()
+        match.group('block').lower(): match.group('contents').strip()
         for match in map(patterns['block'].match, blocks)
     }
 
@@ -152,5 +155,5 @@ def parse_projections(string: str) -> dict:
 
 def parse_kpoints(string: str) -> dict:
     return {
-        'kpoints': np.fromstring(string, sep='\n').reshape((-1, 3))
+        'kpoints': np.fromstring(string, sep='\n').reshape((len(string.splitlines()), -1))[:, :3]
     }
