@@ -13,6 +13,21 @@ patterns = {
         rf'(?P<v3>{_core.expressions["3-vector"]})',
         re.IGNORECASE | re.DOTALL
     ),
+    'kpoints': re.compile(
+        r'\d+\s+'
+        r'(?P<kpoints>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
+    'projections': re.compile(
+        r'\d+\s+'
+        r'(?P<projections>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
+    'exclude_bands': re.compile(
+        r'\d+\s*'
+        r'(?P<exclude_bands>.*)',
+        re.IGNORECASE | re.DOTALL
+    ),
 }
 
 
@@ -48,3 +63,66 @@ def parse_reciprocal_lattice(string: str) -> dict:
         'b1': lattice['v1'], 'b2': lattice['v2'], 'b3': lattice['v3'],
         'lattice_vectors': lattice['lattice_vectors']
     }
+
+
+def parse_kpoints(string: str) -> dict:
+    match = patterns['kpoints'].search(string)
+
+    return {
+        'kpoints': np.fromstring(match.group('kpoints'), sep='\n').reshape((len(match.group('kpoints').splitlines()), -1))[:, :3]
+    }
+
+
+def parse_projections(string: str) -> dict:
+    match = patterns['projections'].search(string)
+
+    projections = np.fromstring(match.group('projections'), sep='\n').reshape((-1, 13))
+
+    return [
+        {
+            'center': projection[:3],
+            'l': int(projection[3]),
+            'mr': int(projection[4]),
+            'r': int(projection[5]),
+            'z-axis': projection[6:9],
+            'x-axis': projection[9:12],
+            'zona': projection[12],
+        }
+        for projection in projections
+    ]
+
+
+def parse_spinor_projections(string: str) -> dict:
+    match = patterns['projections'].search(string)
+
+    projections = np.fromstring(match.group('projections'), sep='\n').reshape((-1, 17))
+
+    return [
+        {
+            'center': projection[:3],
+            'l': int(projection[3]),
+            'mr': int(projection[4]),
+            'r': int(projection[5]),
+            'z-axis': projection[6:9],
+            'x-axis': projection[9:12],
+            'zona': projection[12],
+            'spin': int(projection[13]),
+            'spin-axis': projection[14:],
+        }
+        for projection in projections
+    ]
+
+
+def parse_exclude_bands(string: str) -> dict:
+    match = patterns['exclude_bands'].search(string)
+
+    exclude_bands = np.fromstring(match.group('exclude_bands'), sep='\n')
+
+    if exclude_bands.size > 0:
+        return {
+            'exclude_bands': exclude_bands
+        }
+    else:
+        return {
+            'exclude_bands': None
+        }

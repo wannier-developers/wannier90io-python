@@ -40,6 +40,12 @@ def parse_nnkp(string: str) -> dict:
         'blocks': blocks,
         'direct_lattice': _nnkp.parse_direct_lattice(blocks['real_lattice']),
         'reciprocal_lattice': _nnkp.parse_reciprocal_lattice(blocks['recip_lattice']),
+        'kpoints': _nnkp.parse_kpoints(blocks['kpoints']),
+        'exclude_bands': _nnkp.parse_exclude_bands(blocks['exclude_bands']),
     }
+    if 'projections' in 'blocks':
+        parsed_nnkp['projections'] = _nnkp.parse_projections(blocks['projections'])
+    if 'spinor_projections' in blocks:
+        parsed_nnkp['spinor_projections'] = _nnkp.parse_spinor_projections(blocks['spinor_projections'])
 
     return parsed_nnkp
