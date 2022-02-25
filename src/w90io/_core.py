@@ -29,6 +29,8 @@ patterns = {
 
 
 def convert(string: str) -> int | float | bool | str:
+    string = string.strip()
+
     # regular expressions adapted (in part) from:
     # https://docs.python.org/3/library/re.html#simulating-scanf
     if re.compile(r'^[-+]?\d+$').match(string):
@@ -39,11 +41,20 @@ def convert(string: str) -> int | float | bool | str:
         return True
     elif re.compile(r'^f|false|[.]false[.]$', re.IGNORECASE).match(string):
         return False
-    elif re.compile(expressions['3-vector']).match(string):
+    elif re.compile(rf'^{expressions["3-vector"]}$').match(string):
         try:
             return list(map(int, re.split('[ ,]', string)))
         except ValueError:
             return np.array(list(map(float, re.split('[ ,]', string))))
+    elif re.compile(r'^\d+(-\d+)?([ \t,;]+\d+(-\d+)?)+$').match(string):
+        values = []
+        for component in re.split('[ \t,;]', string):
+            if '-' in component:
+                [i1, i2] = list(map(int, component.split('-')))
+                values += list(range(i1, i2+1))
+            else:
+                values.append(int(component))
+        return values
     else:
         return string
 
@@ -76,7 +87,7 @@ def extract_blocks(string: str) -> list[str]:
 
 def parse_parameters(parameters: list[str]) -> dict:
     return {
-        match.group('parameter'): convert(match.group('value').strip())
+        match.group('parameter'): convert(match.group('value'))
         for match in map(patterns['parameter'].match, parameters)
     }
 
