@@ -16,7 +16,7 @@ def parse_win(string: str) -> dict:
         'blocks': blocks,
     }
     if 'unit_cell_cart' in blocks:
-        parsed_win['unit_cell'] =_win.parse_unit_cell(blocks['unit_cell_cart'])
+        parsed_win['unit_cell_cart'] =_win.parse_unit_cell(blocks['unit_cell_cart'])
     if 'atoms_cart' in blocks:
         parsed_win['atoms_cart'] = _win.parse_atoms(blocks['atoms_cart'])
     if 'atoms_frac' in blocks:

@@ -1,12 +1,12 @@
 import argparse
+import re
 import pprint
 
 import w90io
 
 
 def parse_win(args):
-    with open(args.file, 'r') as fh:
-        contents = fh.read()
+    contents = args.file.read()
 
     comments = w90io._core.extract_comments(contents)
     parameters = w90io._core.extract_parameters(contents)
@@ -20,12 +20,22 @@ def parse_win(args):
         })
     else:
         parsed_win = w90io.parse_win(contents)
-        pprint.pprint(parsed_win)
+        if args.parameters:
+            pprint.pprint({
+                parameter: parsed_win['parameters'][parameter]
+                for parameter in args.parameters if parameter in parsed_win['parameters']
+            })
+        if args.blocks:
+            pprint.pprint({
+                block: parsed_win[block]
+                for block in args.blocks if block in parsed_win['blocks']
+            })
+        if not args.parameters and not args.blocks:
+            pprint.pprint(parsed_win)
 
 
 def parse_nnkp(args):
-    with open(args.file, 'r') as fh:
-        contents = fh.read()
+    contents = args.file.read()
 
     comments = w90io._core.extract_comments(contents)
     parameters = w90io._core.extract_parameters(contents)
@@ -39,19 +49,35 @@ def parse_nnkp(args):
         })
     else:
         parsed_nnkp = w90io.parse_nnkp(contents)
-        pprint.pprint(parsed_nnkp)
+        if args.parameters:
+            pprint.pprint({
+                parameter: parsed_nnkp['parameters'][parameter]
+                for parameter in args.parameters if parameter in parsed_nnkp['parameters']
+            })
+        if args.blocks:
+            pprint.pprint({
+                block: parsed_nnkp[block]
+                for block in args.blocks if block in parsed_nnkp['blocks']
+            })
+        if not args.parameters and not args.blocks:
+            pprint.pprint(parsed_nnkp)
 
 
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='subparser', required=True)
-    parser_win = subparsers.add_parser('parse-win')
-    parser_win.add_argument('file')
-    parser_win.add_argument('--extract-only', action='store_true')
+    #
+    parser_common = argparse.ArgumentParser(add_help=False)
+    parser_common.add_argument('file', type=open)
+    parser_common.add_argument('--extract-only', action='store_true')
+    group = parser_common.add_mutually_exclusive_group()
+    group.add_argument('--parameters', type=lambda string: re.split('[ ,]', string))
+    group.add_argument('--blocks', type=lambda string: re.split('[ ,]', string))
+    #
+    parser_win = subparsers.add_parser('parse-win', parents=[parser_common])
     parser_win.set_defaults(func=parse_win)
-    parser_nnkp = subparsers.add_parser('parse-nnkp')
-    parser_nnkp.add_argument('file')
-    parser_nnkp.add_argument('--extract-only', action='store_true')
+    #
+    parser_nnkp = subparsers.add_parser('parse-nnkp', parents=[parser_common])
     parser_nnkp.set_defaults(func=parse_nnkp)
 
     args = parser.parse_args()
