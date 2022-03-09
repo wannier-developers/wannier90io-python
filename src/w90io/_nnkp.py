@@ -116,7 +116,7 @@ def parse_spinor_projections(string: str) -> dict:
 def parse_exclude_bands(string: str) -> dict:
     match = patterns['exclude_bands'].search(string)
 
-    exclude_bands = np.fromstring(match.group('exclude_bands'), sep='\n')
+    exclude_bands = np.fromstring(match.group('exclude_bands'), sep='\n', dtype=int)
 
     if exclude_bands.size > 0:
         return {

@@ -1,8 +1,6 @@
 from __future__ import annotations
 import re
 
-import numpy as np
-
 
 expressions = {
     'float': r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?',
@@ -28,7 +26,7 @@ patterns = {
 }
 
 
-def convert(string: str) -> int | float | bool | str:
+def convert(string: str) -> int | float | bool | str | list[int] | list[float]:
     string = string.strip()
 
     # regular expressions adapted (in part) from:
@@ -45,7 +43,7 @@ def convert(string: str) -> int | float | bool | str:
         try:
             return list(map(int, re.split('[ ,]', string)))
         except ValueError:
-            return np.array(list(map(float, re.split('[ ,]', string))))
+            return list(map(float, re.split('[ ,]', string)))
     elif re.compile(r'^\d+(-\d+)?([ \t,;]+\d+(-\d+)?)+$').match(string):
         values = []
         for component in re.split('[ \t,;]', string):
