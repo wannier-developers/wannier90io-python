@@ -6,6 +6,15 @@ from . import _win
 
 
 def parse_win(string: str) -> dict:
+    """
+    Parse WIN
+
+    Arguments:
+        string: the WIN text
+
+    Returns:
+        the parsed WIN
+    """
     comments = _core.extract_comments(string)
     parameters = _core.parse_parameters(_core.extract_parameters(string))
     blocks = _core.parse_blocks(_core.extract_blocks(string))
@@ -30,6 +39,15 @@ def parse_win(string: str) -> dict:
 
 
 def parse_nnkp(string: str) -> dict:
+    """
+    Parse NNKP
+
+    Arguments:
+        string: the NNKP text
+
+    Returns:
+        the parsed NNKP
+    """
     comments = _core.extract_comments(string)
     parameters = _core.parse_parameters(_core.extract_parameters(string))
     blocks = _core.parse_blocks(_core.extract_blocks(string))
