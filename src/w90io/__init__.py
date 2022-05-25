@@ -3,6 +3,8 @@ from __future__ import annotations
 from . import _core
 from . import _nnkp
 from . import _win
+from ._amn import *
+from ._eig import *
 
 
 def parse_win(string: str) -> dict:
