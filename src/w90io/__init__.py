@@ -5,6 +5,7 @@ from . import _nnkp
 from . import _win
 from ._amn import *
 from ._eig import *
+from ._wout import parse_wout
 
 
 def parse_win(string: str) -> dict:
