@@ -5,6 +5,10 @@ import pprint
 import w90io
 
 
+pp = pprint.PrettyPrinter(indent=2, width=120)
+pprint.sorted = lambda x, key=None: x   # print dictionaries with keys in insertion order
+
+
 def parse_win(args):
     contents = args.file.read()
 
@@ -13,7 +17,7 @@ def parse_win(args):
     blocks = w90io._core.extract_blocks(contents)
 
     if args.extract_only:
-        pprint.pprint({
+        pp.pprint({
             'comments': comments,
             'parameters': parameters,
             'blocks': blocks,
@@ -21,36 +25,36 @@ def parse_win(args):
     else:
         parsed_win = w90io.parse_win(contents)
         if args.parameters:
-            pprint.pprint({
+            pp.pprint({
                 parameter: parsed_win['parameters'][parameter]
                 for parameter in args.parameters if parameter in parsed_win['parameters']
             })
         if args.blocks:
-            pprint.pprint({
+            pp.pprint({
                 block: parsed_win[block]
                 for block in args.blocks if block in parsed_win['blocks']
             })
         if not args.parameters and not args.blocks:
-            pprint.pprint(parsed_win)
+            pp.pprint(parsed_win)
 
 
 def parse_wout_iteration_info(args):
     parsed_iteration_info = w90io.parse_iteration_info(args.file)
 
     if args.convergence:
-        pprint.pprint(parsed_iteration_info['convergence'])
+        pp.pprint(parsed_iteration_info['convergence'])
 
     if args.spread:
-        pprint.pprint(parsed_iteration_info['spread'])
+        pp.pprint(parsed_iteration_info['spread'])
 
     if args.delta:
-        pprint.pprint(parsed_iteration_info['delta'])
+        pp.pprint(parsed_iteration_info['delta'])
 
     if args.disentanglement:
-        pprint.pprint(parsed_iteration_info['disentanglement'])
+        pp.pprint(parsed_iteration_info['disentanglement'])
 
     if not any([args.convergence, args.spread, args.delta, args.disentanglement]):
-        pprint.pprint(parsed_iteration_info)
+        pp.pprint(parsed_iteration_info)
 
 
 def parse_nnkp(args):
@@ -61,7 +65,7 @@ def parse_nnkp(args):
     blocks = w90io._core.extract_blocks(contents)
 
     if args.extract_only:
-        pprint.pprint({
+        pp.pprint({
             'comments': comments,
             'parameters': parameters,
             'blocks': blocks,
@@ -69,17 +73,17 @@ def parse_nnkp(args):
     else:
         parsed_nnkp = w90io.parse_nnkp(contents)
         if args.parameters:
-            pprint.pprint({
+            pp.pprint({
                 parameter: parsed_nnkp['parameters'][parameter]
                 for parameter in args.parameters if parameter in parsed_nnkp['parameters']
             })
         if args.blocks:
-            pprint.pprint({
+            pp.pprint({
                 block: parsed_nnkp[block]
                 for block in args.blocks if block in parsed_nnkp['blocks']
             })
         if not args.parameters and not args.blocks:
-            pprint.pprint(parsed_nnkp)
+            pp.pprint(parsed_nnkp)
 
 
 def info_amn(args):
