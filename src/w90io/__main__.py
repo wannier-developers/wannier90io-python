@@ -34,6 +34,25 @@ def parse_win(args):
             pprint.pprint(parsed_win)
 
 
+def parse_wout_iteration_info(args):
+    parsed_iteration_info = w90io.parse_iteration_info(args.file)
+
+    if args.convergence:
+        pprint.pprint(parsed_iteration_info['convergence'])
+
+    if args.spread:
+        pprint.pprint(parsed_iteration_info['spread'])
+
+    if args.delta:
+        pprint.pprint(parsed_iteration_info['delta'])
+
+    if args.disentanglement:
+        pprint.pprint(parsed_iteration_info['disentanglement'])
+
+    if not any([args.convergence, args.spread, args.delta, args.disentanglement]):
+        pprint.pprint(parsed_iteration_info)
+
+
 def parse_nnkp(args):
     contents = args.file.read()
 
@@ -94,6 +113,14 @@ def main():
     parser_win = subparsers.add_parser('parse-win', parents=[parser_common, parser_common_parse])
     parser_win.add_argument('--extract-only', action='store_true')
     parser_win.set_defaults(func=parse_win)
+    #
+    parser_wout_iteration_info = subparsers.add_parser('parse-wout-iteration-info', parents=[parser_common])
+    group = parser_wout_iteration_info.add_mutually_exclusive_group()
+    group.add_argument('--convergence', action='store_true')
+    group.add_argument('--spread', action='store_true')
+    group.add_argument('--delta', action='store_true')
+    group.add_argument('--disentanglement', action='store_true')
+    parser_wout_iteration_info.set_defaults(func=parse_wout_iteration_info)
     #
     parser_nnkp = subparsers.add_parser('parse-nnkp', parents=[parser_common, parser_common_parse])
     parser_nnkp.add_argument('--extract-only', action='store_true')

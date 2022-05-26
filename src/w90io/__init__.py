@@ -5,7 +5,12 @@ from . import _nnkp
 from . import _win
 from ._amn import *
 from ._eig import *
-from ._wout import parse_wout
+from ._wout import parse_iteration_info
+
+
+__all__ = [
+    'parse_iteration_info',
+]
 
 
 def parse_win(string: str) -> dict:
