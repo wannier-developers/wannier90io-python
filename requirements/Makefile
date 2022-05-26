@@ -6,7 +6,7 @@ install: setup.txt dev-requirements.txt
 	pip-sync $^
 	pip install -e ../
 
-setup.txt: ../setup.cfg
+setup.txt: ../pyproject.toml
 	pip-compile $< --output-file $@
 
 dev-requirements.txt: dev-requirements.in setup.txt

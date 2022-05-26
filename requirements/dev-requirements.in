@@ -1,3 +1,4 @@
+hatch
 mkdocs-material
 mkdocstrings[python]
 pip-tools
