@@ -6,6 +6,9 @@ import numpy as np
 from . import _core
 
 
+__all__ = ['parse_nnkp']
+
+
 patterns = {
     'lattice_vectors': re.compile(
         rf'(?P<v1>{_core.expressions["3-vector"]})\s+'
@@ -126,3 +129,34 @@ def parse_exclude_bands(string: str) -> dict:
         return {
             'exclude_bands': None
         }
+
+
+def parse_nnkp(string: str) -> dict:
+    """
+    Parse NNKP
+
+    Arguments:
+        string: the NNKP text
+
+    Returns:
+        the parsed NNKP
+    """
+    comments = _core.extract_comments(string)
+    parameters = _core.parse_parameters(_core.extract_parameters(string))
+    blocks = _core.parse_blocks(_core.extract_blocks(string))
+
+    parsed_nnkp = {
+        'comments': comments,
+        'parameters': parameters,
+        'blocks': blocks,
+        'direct_lattice': parse_direct_lattice(blocks['real_lattice']),
+        'reciprocal_lattice': parse_reciprocal_lattice(blocks['recip_lattice']),
+        'kpoints': parse_kpoints(blocks['kpoints']),
+        'exclude_bands': parse_exclude_bands(blocks['exclude_bands']),
+    }
+    if 'projections' in 'blocks':
+        parsed_nnkp['projections'] = parse_projections(blocks['projections'])
+    if 'spinor_projections' in blocks:
+        parsed_nnkp['spinor_projections'] = parse_spinor_projections(blocks['spinor_projections'])
+
+    return parsed_nnkp

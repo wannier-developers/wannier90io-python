@@ -9,6 +9,6 @@ import w90io
 def test_parse_win(wannier90, example):
     with open(pathlib.Path(wannier90)/f'examples/{example}/wannier.wout', 'r') as fh:
         try:
-            w90io.parse_iteration_info(fh)
+            w90io.parse_wout_iteration_info(fh)
         except Exception:
             assert False

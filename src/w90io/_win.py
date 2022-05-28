@@ -6,6 +6,9 @@ from . import _core
 import numpy as np
 
 
+__all__ = ['parse_win']
+
+
 patterns = {
     'unit_cell': re.compile(
         r'((?P<units>bohr|ang)\s+)?'
@@ -78,3 +81,36 @@ def parse_kpoints(string: str) -> dict:
     return {
         'kpoints': np.fromstring(string, sep='\n').reshape((len(string.splitlines()), -1))[:, :3]
     }
+
+
+def parse_win(string: str) -> dict:
+    """
+    Parse WIN
+
+    Arguments:
+        string: the WIN text
+
+    Returns:
+        the parsed WIN
+    """
+    comments = _core.extract_comments(string)
+    parameters = _core.parse_parameters(_core.extract_parameters(string))
+    blocks = _core.parse_blocks(_core.extract_blocks(string))
+
+    parsed_win = {
+        'comments': comments,
+        'parameters': parameters,
+        'blocks': blocks,
+    }
+    if 'unit_cell_cart' in blocks:
+        parsed_win['unit_cell_cart'] = parse_unit_cell(blocks['unit_cell_cart'])
+    if 'atoms_cart' in blocks:
+        parsed_win['atoms_cart'] = parse_atoms(blocks['atoms_cart'])
+    if 'atoms_frac' in blocks:
+        parsed_win['atoms_frac'] = parse_atoms(blocks['atoms_frac'])
+    if 'projections' in blocks:
+        parsed_win['projections'] = parse_projections(blocks['projections'])
+    if 'kpoints' in blocks:
+        parsed_win['kpoints'] = parse_kpoints(blocks['kpoints'])
+
+    return parsed_win

@@ -5,6 +5,9 @@ import re
 from . import _core
 
 
+__all__ = ['parse_wout', 'parse_wout_iteration_info']
+
+
 patterns = {
     'convergence_line': re.compile(
         r'^\s*'
@@ -41,7 +44,7 @@ patterns = {
 }
 
 
-def parse_iteration_info(stream: typing.TextIO) -> dict:
+def parse_wout_iteration_info(stream: typing.TextIO) -> dict:
     convergence = []
     spread = []
     delta = []

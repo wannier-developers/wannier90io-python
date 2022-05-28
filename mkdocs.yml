@@ -29,6 +29,7 @@ plugins:
           selection:
             docstring_style: google
           rendering:
+            show_root_heading: true
             show_root_toc_entry: false
             show_signature_annotations: true
             show_source: true
