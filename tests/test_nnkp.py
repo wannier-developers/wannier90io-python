@@ -11,6 +11,6 @@ def test_parse_nnkp(wannier90, example):
         contents = fh.read()
 
     try:
-        w90io.parse_nnkp(contents)
+        w90io.parse_nnkp_raw(contents)
     except Exception:
         assert False

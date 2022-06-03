@@ -3,10 +3,8 @@ import re
 
 from . import _core
 
-import numpy as np
 
-
-__all__ = ['parse_win']
+__all__ = ['parse_win_raw']
 
 
 patterns = {
@@ -34,14 +32,13 @@ def parse_unit_cell(string: str) -> dict:
     match = patterns['unit_cell'].search(string)
 
     if match is not None:
-        a1 = np.fromstring(match.group('a1'), sep=' ')
-        a2 = np.fromstring(match.group('a2'), sep=' ')
-        a3 = np.fromstring(match.group('a3'), sep=' ')
+        a1 = [float(x) for x in match.group('a1').split()]
+        a2 = [float(x) for x in match.group('a2').split()]
+        a3 = [float(x) for x in match.group('a3').split()]
 
         return {
             'units': match.group('units'),
             'a1': a1, 'a2': a2, 'a3': a3,
-            'lattice_vectors': np.array([a1, a2, a3]),
         }
     else:
         return None
@@ -56,7 +53,7 @@ def parse_atoms(string: str) -> dict:
             'atoms': [
                 {
                     'species': line.split()[0],
-                    'basis_vector': np.fromiter(map(float, line.split()[1:]), dtype=float),
+                    'basis_vector': [float(x) for x in line.split()[1:]],
                 }
                 for line in match.group('atoms').splitlines()
             ]
@@ -79,11 +76,13 @@ def parse_projections(string: str) -> dict:
 
 def parse_kpoints(string: str) -> dict:
     return {
-        'kpoints': np.fromstring(string, sep='\n').reshape((len(string.splitlines()), -1))[:, :3]
+        'kpoints': [
+            [float(x) for x in line.split()] for line in string.splitlines()
+        ]
     }
 
 
-def parse_win(string: str) -> dict:
+def parse_win_raw(string: str) -> dict:
     """
     Parse WIN
 

@@ -6,7 +6,7 @@ import numpy as np
 from . import _core
 
 
-__all__ = ['parse_nnkp']
+__all__ = ['parse_nnkp_raw']
 
 
 patterns = {
@@ -38,13 +38,12 @@ def parse_lattice(string: str) -> dict:
     match = patterns['lattice_vectors'].search(string)
 
     if match is not None:
-        v1 = np.fromstring(match.group('v1'), sep=' ')
-        v2 = np.fromstring(match.group('v2'), sep=' ')
-        v3 = np.fromstring(match.group('v3'), sep=' ')
+        v1 = [float(x) for x in match.group('v1').split()]
+        v2 = [float(x) for x in match.group('v2').split()]
+        v3 = [float(x) for x in match.group('v3').split()]
 
         return {
             'v1': v1, 'v2': v2, 'v3': v3,
-            'lattice_vectors': np.array([v1, v2, v3]),
         }
     else:
         return None
@@ -55,7 +54,6 @@ def parse_direct_lattice(string: str) -> dict:
 
     return {
         'a1': lattice['v1'], 'a2': lattice['v2'], 'a3': lattice['v3'],
-        'lattice_vectors': lattice['lattice_vectors']
     }
 
 
@@ -64,7 +62,6 @@ def parse_reciprocal_lattice(string: str) -> dict:
 
     return {
         'b1': lattice['v1'], 'b2': lattice['v2'], 'b3': lattice['v3'],
-        'lattice_vectors': lattice['lattice_vectors']
     }
 
 
@@ -72,7 +69,9 @@ def parse_kpoints(string: str) -> dict:
     match = patterns['kpoints'].search(string)
 
     return {
-        'kpoints': np.fromstring(match.group('kpoints'), sep='\n').reshape((len(match.group('kpoints').splitlines()), -1))[:, :3]
+        'kpoints': [
+            [float(x) for x in line.split()] for line in match.group('kpoints').splitlines()
+        ]
     }
 
 
@@ -119,11 +118,9 @@ def parse_spinor_projections(string: str) -> dict:
 def parse_exclude_bands(string: str) -> dict:
     match = patterns['exclude_bands'].search(string)
 
-    exclude_bands = np.fromstring(match.group('exclude_bands'), sep='\n', dtype=int)
-
-    if exclude_bands.size > 0:
+    if match is not None:
         return {
-            'exclude_bands': exclude_bands
+            'exclude_bands': [int(line) for line in match.group('exclude_bands').splitlines()]
         }
     else:
         return {
@@ -131,7 +128,7 @@ def parse_exclude_bands(string: str) -> dict:
         }
 
 
-def parse_nnkp(string: str) -> dict:
+def parse_nnkp_raw(string: str) -> dict:
     """
     Parse NNKP
 
