@@ -30,7 +30,7 @@ class Atom(pydantic.BaseModel):
 
 class Atoms(pydantic.BaseModel):
     units: typing.Optional[str]
-    atoms: typing.List[Atoms]
+    atoms: typing.List[Atom]
 
 
 class Projections(pydantic.BaseModel):
@@ -51,7 +51,8 @@ class WIN(pydantic.BaseModel):
     parameters: dict
     blocks: dict
     unit_cell_cart: typing.Optional[UnitCell]
-    # atoms_frac: Atoms
+    atoms_frac: typing.Optional[Atoms]
+    atoms_cart: typing.Optional[Atoms]
     projections: Projections
     kpoints: Kpoints
 
