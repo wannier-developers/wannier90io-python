@@ -2,4 +2,5 @@ mkdocs-material
 mkdocstrings[python]
 pip-tools
 pre-commit
+pydantic
 pytest

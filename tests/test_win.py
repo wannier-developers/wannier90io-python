@@ -11,6 +11,11 @@ def test_parse_win(wannier90, example):
         contents = fh.read()
 
     try:
-        w90io.parse_win_raw(contents)
+        parsed_win = w90io.parse_win_raw(contents)
+    except Exception:
+        assert False
+
+    try:
+        w90io._schema.WIN.parse_obj(parsed_win)
     except Exception:
         assert False
