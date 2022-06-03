@@ -23,7 +23,7 @@ def parse_win(args):
             'blocks': blocks,
         })
     else:
-        parsed_win = w90io.parse_win(contents)
+        parsed_win = w90io.parse_win_raw(contents)
         if args.parameters:
             pp.pprint({
                 parameter: parsed_win['parameters'][parameter]
@@ -71,7 +71,7 @@ def parse_nnkp(args):
             'blocks': blocks,
         })
     else:
-        parsed_nnkp = w90io.parse_nnkp(contents)
+        parsed_nnkp = w90io.parse_nnkp_raw(contents)
         if args.parameters:
             pp.pprint({
                 parameter: parsed_nnkp['parameters'][parameter]

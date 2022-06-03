@@ -2,7 +2,7 @@ import pathlib
 
 import pytest
 
-import w90io
+import w90io._schema
 
 
 @pytest.mark.parametrize('example', [f'example{i:02d}' for i in [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 17, 18, 19, 20]])
@@ -11,6 +11,11 @@ def test_parse_nnkp(wannier90, example):
         contents = fh.read()
 
     try:
-        w90io.parse_nnkp(contents)
+        parsed_nnkp = w90io.parse_nnkp_raw(contents)
+    except Exception:
+        assert False
+
+    try:
+        w90io._schema.NNKP.parse_obj(parsed_nnkp)
     except Exception:
         assert False
