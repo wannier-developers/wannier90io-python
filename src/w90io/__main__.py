@@ -39,7 +39,7 @@ def parse_win(args):
 
 
 def parse_wout_iteration_info(args):
-    parsed_iteration_info = w90io.parse_iteration_info(args.file)
+    parsed_iteration_info = w90io.parse_wout_iteration_info(args.file)
 
     if args.convergence:
         pp.pprint(parsed_iteration_info['convergence'])

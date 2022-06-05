@@ -4,3 +4,4 @@ pip-tools
 pre-commit
 pydantic
 pytest
+pytest-cov

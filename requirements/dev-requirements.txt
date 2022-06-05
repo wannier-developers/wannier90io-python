@@ -18,6 +18,8 @@ click==8.0.3
     # via
     #   mkdocs
     #   pip-tools
+coverage[toml]==6.4.1
+    # via pytest-cov
 distlib==0.3.4
     # via virtualenv
 filelock==3.5.1
@@ -107,6 +109,10 @@ pymdown-extensions==9.4
 pyparsing==3.0.7
     # via packaging
 pytest==7.0.1
+    # via
+    #   -r dev-requirements.in
+    #   pytest-cov
+pytest-cov==3.0.0
     # via -r dev-requirements.in
 python-dateutil==2.8.2
     # via ghp-import
@@ -128,6 +134,7 @@ toml==0.10.2
     # via pre-commit
 tomli==2.0.1
     # via
+    #   coverage
     #   pep517
     #   pytest
 typing-extensions==4.1.1

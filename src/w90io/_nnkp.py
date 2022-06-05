@@ -151,7 +151,7 @@ def parse_nnkp_raw(string: str) -> dict:
         'kpoints': parse_kpoints(blocks['kpoints']),
         'exclude_bands': parse_exclude_bands(blocks['exclude_bands']),
     }
-    if 'projections' in 'blocks':
+    if 'projections' in blocks:
         parsed_nnkp['projections'] = parse_projections(blocks['projections'])
     if 'spinor_projections' in blocks:
         parsed_nnkp['spinor_projections'] = parse_spinor_projections(blocks['spinor_projections'])
