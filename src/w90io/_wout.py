@@ -45,6 +45,16 @@ patterns = {
 
 
 def parse_wout_iteration_info(stream: typing.TextIO) -> dict:
+    """
+    Parse WOUT iteration info
+
+    Arguments:
+        stream: a file-like stream
+
+    Returns:
+        the parsed WOUT iteration info
+
+    """
     convergence = []
     spread = []
     delta = []
