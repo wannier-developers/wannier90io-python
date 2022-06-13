@@ -111,7 +111,10 @@ pyparsing==3.0.7
 pytest==7.0.1
     # via
     #   -r dev-requirements.in
+    #   pytest-codeblocks
     #   pytest-cov
+pytest-codeblocks==0.16.1
+    # via -r dev-requirements.in
 pytest-cov==3.0.0
     # via -r dev-requirements.in
 python-dateutil==2.8.2
