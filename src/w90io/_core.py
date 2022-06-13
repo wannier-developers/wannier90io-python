@@ -5,8 +5,8 @@ import re
 expressions = {
     'float': r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?',
     '3-vector': (
-        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t]+'
-        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t]+'
+        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t,;]+'
+        r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?[ \t,;]+'
         r'[-+]?(\d+(\.\d*)?|\.\d+)([eEdD][-+]?\d+)?'
     ),
 }
@@ -41,9 +41,9 @@ def convert(string: str) -> int | float | bool | str | list[int] | list[float]:
         return False
     elif re.compile(rf'^{expressions["3-vector"]}$').match(string):
         try:
-            return list(map(int, re.split('[ ,]', string)))
+            return [int(x) for x in re.split(r'[ \t,;]+', string)]
         except ValueError:
-            return list(map(float, re.split('[ ,]', string)))
+            return [float(x) for x in re.split(r'[ \t,;]+', string)]
     elif re.compile(r'^\d+(-\d+)?([ \t,;]+\d+(-\d+)?)+$').match(string):
         values = []
         for component in re.split('[ \t,;]', string):

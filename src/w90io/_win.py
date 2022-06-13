@@ -32,9 +32,9 @@ def parse_unit_cell(string: str) -> dict:
     match = patterns['unit_cell'].search(string)
 
     if match is not None:
-        a1 = [float(x) for x in match.group('a1').split()]
-        a2 = [float(x) for x in match.group('a2').split()]
-        a3 = [float(x) for x in match.group('a3').split()]
+        a1 = [float(x) for x in re.split(r'[ \t,;]+', match.group('a1'))]
+        a2 = [float(x) for x in re.split(r'[ \t,;]+', match.group('a2'))]
+        a3 = [float(x) for x in re.split(r'[ \t,;]+', match.group('a3'))]
 
         return {
             'units': match.group('units'),
@@ -53,7 +53,9 @@ def parse_atoms(string: str) -> dict:
             'atoms': [
                 {
                     'species': line.split()[0],
-                    'basis_vector': [float(x) for x in line.split()[1:]],
+                    'basis_vector': [
+                        float(x) for x in re.split(r'[ \t,;]+', line.strip())[1:]
+                    ],
                 }
                 for line in match.group('atoms').splitlines()
             ]
