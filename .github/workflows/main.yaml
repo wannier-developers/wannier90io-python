@@ -17,6 +17,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache test fixtures
+        id: cache-test-fixtures
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/tests/fixtures/wannier90-*
+          key: ${{ runner.os }}-${{ hashFiles('tests/fixtures/*') }}_0
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -25,6 +31,7 @@ jobs:
           pip install -r requirements/dev-requirements.txt
           pip install .
       - name: Make fixtures
+        if: steps.cache-test-fixtures.outputs.cache-hit != 'true'
         run: |
           make -C ./tests/fixtures
       - name: Run tests
