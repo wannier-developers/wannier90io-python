@@ -26,6 +26,11 @@ patterns = {
         r'(?P<projections>.+)',
         re.IGNORECASE | re.DOTALL
     ),
+    'nnkpts': re.compile(
+        r'\d+\s+'
+        r'(?P<nnkpts>.+)',
+        re.IGNORECASE | re.DOTALL
+    ),
     'exclude_bands': re.compile(
         r'\d+\s*'
         r'(?P<exclude_bands>.*)',
@@ -115,6 +120,12 @@ def parse_spinor_projections(string: str) -> dict:
     ]
 
 
+def parse_nnkpts(string: str) -> list:
+    match = patterns['nnkpts'].search(string)
+
+    return [[int(x) for x in line.split()] for line in match.group('nnkpts').splitlines()]
+
+
 def parse_exclude_bands(string: str) -> dict:
     match = patterns['exclude_bands'].search(string)
 
@@ -149,6 +160,7 @@ def parse_nnkp_raw(string: str) -> dict:
         'direct_lattice': parse_direct_lattice(blocks['real_lattice']),
         'reciprocal_lattice': parse_reciprocal_lattice(blocks['recip_lattice']),
         'kpoints': parse_kpoints(blocks['kpoints']),
+        'nnkpts': parse_nnkpts(blocks['nnkpts']),
         'exclude_bands': parse_exclude_bands(blocks['exclude_bands']),
     }
     if 'projections' in blocks:

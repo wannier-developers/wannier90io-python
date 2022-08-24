@@ -61,6 +61,7 @@ class NNKP(pydantic.BaseModel):
     comments: typing.List[str]
     parameters: dict
     blocks: dict
+    nnkpts: typing.List[typing.List[int]]
     direct_lattice: DirectLattice
     reciprocal_lattice: ReciprocalLattice
     kpoints: Kpoints
