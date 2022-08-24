@@ -103,6 +103,22 @@ def info_eig(args):
     print(f'Nb = {eig.shape[1]}')
 
 
+def info_mmn(args):
+    with args.file:
+        (mmn, nnkpts) = w90io.read_mmn(args.file)
+
+    print(mmn.shape, nnkpts.shape)
+
+
+def info_chk(args):
+    with args.file:
+        chk = w90io.read_chk(args.file)
+
+    print(chk['num_bands'])
+    print(chk['num_wann'])
+    print(chk['have_disentangled'])
+
+
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='subparser', required=True)
@@ -135,6 +151,12 @@ def main():
     #
     parser_info_eig = subparsers.add_parser('info-eig', parents=[parser_common])
     parser_info_eig.set_defaults(func=info_eig)
+    #
+    parser_info_mmn = subparsers.add_parser('info-mmn', parents=[parser_common])
+    parser_info_mmn.set_defaults(func=info_mmn)
+    #
+    parser_info_chk = subparsers.add_parser('info-chk', parents=[parser_common])
+    parser_info_chk.set_defaults(func=info_chk)
 
     args = parser.parse_args()
     args.func(args)

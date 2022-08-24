@@ -30,7 +30,7 @@ else
   echo "LIBS=-lblas -llapack" >> make.inc
 fi
 
-make
+make wannier post w90chk2chk
 
 popd
 popd

@@ -1,5 +1,6 @@
 W90 = $(abspath ../../wannier90.x)
 POSTW90 = $(abspath ../../postw90.x)
+W90CHK2CHK = $(abspath ../../w90chk2chk.x)
 
 EXAMPLES_1 = $(foreach idx,01 02 03 04,example$(idx))
 EXAMPLES_2 = $(foreach idx,05 06 07 09 10 11 13 17 18 19 20,example$(idx))
@@ -47,6 +48,7 @@ run-example01:
 	$(W90) -pp wannier
 	echo "write_xyz=true" >> wannier.win
 	$(W90) wannier
+	$(W90CHK2CHK) -export wannier
 
 .PHONY: run-example02
 run-example02:
@@ -55,6 +57,7 @@ run-example02:
 	echo $(WRITE_HR) >> wannier.win
 	echo "write_xyz=true" >> wannier.win
 	$(W90) wannier
+	$(W90CHK2CHK) -export wannier
 
 .PHONY: run-example03
 run-example03:
@@ -62,6 +65,7 @@ run-example03:
 	$(W90) -pp wannier
 	$(call modify_win)
 	$(W90) wannier
+	$(W90CHK2CHK) -export wannier
 	echo "" >> wannier_geninterp.kpt
 	echo "crystal" >> wannier_geninterp.kpt
 	head -n 1 wannier_band.kpt >> wannier_geninterp.kpt
@@ -75,6 +79,7 @@ run-example04:
 	$(call modify_win)
 	echo "geninterp_alsofirstder=true" >> wannier.win
 	$(W90) wannier
+	$(W90CHK2CHK) -export wannier
 	echo "" >> wannier_geninterp.kpt
 	echo "crystal" >> wannier_geninterp.kpt
 	head -n 1 wannier_band.kpt >> wannier_geninterp.kpt
