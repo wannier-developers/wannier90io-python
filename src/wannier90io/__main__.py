@@ -2,7 +2,7 @@ import argparse
 import re
 import pprint
 
-import w90io
+import wannier90io
 
 
 pp = pprint.PrettyPrinter(indent=2, width=120)
@@ -12,9 +12,9 @@ pprint.sorted = lambda x, key=None: x   # print dictionaries with keys in insert
 def parse_win(args):
     contents = args.file.read()
 
-    comments = w90io._core.extract_comments(contents)
-    parameters = w90io._core.extract_parameters(contents)
-    blocks = w90io._core.extract_blocks(contents)
+    comments = wannier90io._core.extract_comments(contents)
+    parameters = wannier90io._core.extract_parameters(contents)
+    blocks = wannier90io._core.extract_blocks(contents)
 
     if args.extract_only:
         pp.pprint({
@@ -23,7 +23,7 @@ def parse_win(args):
             'blocks': blocks,
         })
     else:
-        parsed_win = w90io.parse_win_raw(contents)
+        parsed_win = wannier90io.parse_win_raw(contents)
         if args.parameters:
             pp.pprint({
                 parameter: parsed_win['parameters'][parameter]
@@ -39,7 +39,7 @@ def parse_win(args):
 
 
 def parse_wout_iteration_info(args):
-    parsed_iteration_info = w90io.parse_wout_iteration_info(args.file)
+    parsed_iteration_info = wannier90io.parse_wout_iteration_info(args.file)
 
     if args.convergence:
         pp.pprint(parsed_iteration_info['convergence'])
@@ -60,9 +60,9 @@ def parse_wout_iteration_info(args):
 def parse_nnkp(args):
     contents = args.file.read()
 
-    comments = w90io._core.extract_comments(contents)
-    parameters = w90io._core.extract_parameters(contents)
-    blocks = w90io._core.extract_blocks(contents)
+    comments = wannier90io._core.extract_comments(contents)
+    parameters = wannier90io._core.extract_parameters(contents)
+    blocks = wannier90io._core.extract_blocks(contents)
 
     if args.extract_only:
         pp.pprint({
@@ -71,7 +71,7 @@ def parse_nnkp(args):
             'blocks': blocks,
         })
     else:
-        parsed_nnkp = w90io.parse_nnkp_raw(contents)
+        parsed_nnkp = wannier90io.parse_nnkp_raw(contents)
         if args.parameters:
             pp.pprint({
                 parameter: parsed_nnkp['parameters'][parameter]
@@ -88,7 +88,7 @@ def parse_nnkp(args):
 
 def info_amn(args):
     with args.file:
-        amn = w90io.read_amn(args.file)
+        amn = wannier90io.read_amn(args.file)
 
     print(f'Nk = {amn.shape[0]}')
     print(f'Nb = {amn.shape[1]}')
@@ -97,7 +97,7 @@ def info_amn(args):
 
 def info_eig(args):
     with args.file:
-        eig = w90io.read_eig(args.file)
+        eig = wannier90io.read_eig(args.file)
 
     print(f'Nk = {eig.shape[0]}')
     print(f'Nb = {eig.shape[1]}')
