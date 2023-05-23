@@ -2,7 +2,7 @@ import pathlib
 
 import pytest
 
-import w90io._schema
+import wannier90io as w90io
 
 
 @pytest.mark.parametrize('example', [f'example{i:02d}' for i in [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 17, 18, 19, 20]])

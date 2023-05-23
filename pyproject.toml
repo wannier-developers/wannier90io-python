@@ -6,4 +6,4 @@ build-backend = "setuptools.build_meta"
 select = ["E231"]
 
 [tool.pytest.ini_options]
-addopts = "--cov=w90io --codeblocks"
+addopts = "--cov=wannier90io --codeblocks"

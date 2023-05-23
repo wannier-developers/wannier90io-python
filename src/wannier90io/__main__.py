@@ -2,7 +2,7 @@ import argparse
 import re
 import pprint
 
-import w90io
+import wannier90io as w90io
 
 
 pp = pprint.PrettyPrinter(indent=2, width=120)

@@ -35,7 +35,7 @@ plugins:
             show_source: true
             members_order: source
       watch:
-        - src/w90io
+        - src/wannier90io
 
 extra:
   social:
