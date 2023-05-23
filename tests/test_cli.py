@@ -15,8 +15,8 @@ def test_cli(wannier90, example):
     amn_file = pathlib.Path(wannier90)/f'examples/{example}/wannier.amn'
     eig_file = pathlib.Path(wannier90)/f'examples/{example}/wannier.eig'
 
-    assert subprocess.run(['wannier90io', 'parse-win', win_file]).returncode == 0
-    assert subprocess.run(['wannier90io', 'parse-nnkp', nnkp_file]).returncode == 0
-    assert subprocess.run(['wannier90io', 'parse-wout-iteration-info', wout_file]).returncode == 0
-    assert subprocess.run(['wannier90io', 'info-amn', amn_file]).returncode == 0
-    assert subprocess.run(['wannier90io', 'info-eig', eig_file]).returncode == 0
+    assert subprocess.run(['w90io', 'parse-win', win_file]).returncode == 0
+    assert subprocess.run(['w90io', 'parse-nnkp', nnkp_file]).returncode == 0
+    assert subprocess.run(['w90io', 'parse-wout-iteration-info', wout_file]).returncode == 0
+    assert subprocess.run(['w90io', 'info-amn', amn_file]).returncode == 0
+    assert subprocess.run(['w90io', 'info-eig', eig_file]).returncode == 0

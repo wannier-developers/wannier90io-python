@@ -15,16 +15,16 @@ nnkp_fpath = "./tests/fixtures/wannier90-3.1.0/examples/example01/wannier.nnkp"
 ```python
 import pprint
 
-import wannier90io
+import wannier90io as w90io
 
 
 pp = pprint.PrettyPrinter()
 
 with open(win_fpath, 'r') as fh:
-    parsed_win = wannier90io.parse_win_raw(fh.read())
+    parsed_win = w90io.parse_win_raw(fh.read())
 
 with open(nnkp_fpath, 'r') as fh:
-    parsed_nnkp = wannier90io.parse_nnkp_raw(fh.read())
+    parsed_nnkp = w90io.parse_nnkp_raw(fh.read())
 
 pp.pprint(parsed_win)
 pp.pprint(parsed_nnkp)

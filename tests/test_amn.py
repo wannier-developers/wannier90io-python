@@ -2,13 +2,14 @@ import pathlib
 
 import numpy as np
 import pytest
-import wannier90io
+
+import wannier90io as w90io
 
 
 @pytest.mark.parametrize('example', ['example01', 'example02', 'example03', 'example04'])
 def test_read_amn(wannier90, example):
     with open(pathlib.Path(wannier90)/f'examples/{example}/wannier.amn', 'r') as fh:
-        amn = wannier90io.read_amn(fh)
+        amn = w90io.read_amn(fh)
 
         fh.seek(0)
         fh.readline()
@@ -28,12 +29,12 @@ def test_read_amn(wannier90, example):
 @pytest.mark.parametrize('example', ['example02', 'example03', 'example04'])
 def test_write_amn(wannier90, example):
     with open(pathlib.Path(wannier90)/f'examples/{example}/wannier.amn', 'r') as fh:
-        amn_ref = wannier90io.read_amn(fh)
+        amn_ref = w90io.read_amn(fh)
 
     with open(pathlib.Path(wannier90)/f'examples/{example}/wannier1.amn', 'w+') as fh:
-        wannier90io.write_amn(fh, amn_ref)
+        w90io.write_amn(fh, amn_ref)
 
         fh.seek(0)
-        amn_test = wannier90io.read_amn(fh)
+        amn_test = w90io.read_amn(fh)
 
     assert np.allclose(amn_test, amn_ref)
