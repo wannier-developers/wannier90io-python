@@ -1,11 +1,11 @@
 site_name: Wannier90 I/O with Python
-site_url: https://jimustafa.github.io/wannier90-pylib-io
+site_url: https://jimustafa.github.io/wannier90io-python
 site_author: Jamal Mustafa
 site_description: >-
   Wannier90 I/O with Python
 
-repo_name: jimustafa/wannier90-pylib-io
-repo_url: https://github.com/jimustafa/wannier90-pylib-io
+repo_name: jimustafa/wannier90io-python
+repo_url: https://github.com/jimustafa/wannier90io-python
 edit_uri: ''
 
 theme:
