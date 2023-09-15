@@ -4,7 +4,7 @@ import pathlib
 import numpy as np
 import pytest
 
-import w90io
+import wannier90io as w90io
 
 
 @pytest.mark.parametrize('example', ['example01', 'example02'])
