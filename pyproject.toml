@@ -18,6 +18,7 @@ classifiers = [
 ]
 dependencies = [
   "numpy",
+  "pydantic",
 ]
 
 [project.urls]
@@ -25,14 +26,8 @@ Documentation = "https://github.com/jimustafa/wannier90io-python#readme"
 Issues = "https://github.com/jimustafa/wannier90io-python/issues"
 Source = "https://github.com/jimustafa/wannier90io-python"
 
-[tool.hatch]
-build.exclude = [
-  ".github",
-  ".gitignore",
-  "docs",
-  "mkdocs.yml",
-  "tests/fixtures/wannier90-*",
-  ]
+[tool.hatch.build]
+only-packages = true
 
 [project.scripts]
 w90io = "wannier90io.__main__:main"
