@@ -1,11 +1,11 @@
 site_name: Wannier90 I/O with Python
-site_url: https://jimustafa.github.io/wannier90io-python
+site_url: https://wannier-developers.github.io/wannier90io-python
 site_author: Jamal Mustafa
 site_description: >-
   Wannier90 I/O with Python
 
-repo_name: jimustafa/wannier90io-python
-repo_url: https://github.com/jimustafa/wannier90io-python
+repo_name: wannier-developers/wannier90io-python
+repo_url: https://github.com/wannier-developers/wannier90io-python
 edit_uri: ''
 
 theme:
@@ -40,7 +40,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/jimustafa
+      link: https://github.com/wannier-developers
 
 markdown_extensions:
   - pymdownx.snippets:
