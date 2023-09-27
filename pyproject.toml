@@ -22,9 +22,9 @@ dependencies = [
 dynamic=['version']
 
 [project.urls]
-Documentation = "https://github.com/jimustafa/wannier90io-python#readme"
-Issues = "https://github.com/jimustafa/wannier90io-python/issues"
-Source = "https://github.com/jimustafa/wannier90io-python"
+Documentation = "https://github.com/wannier-developers/wannier90io-python#readme"
+Issues = "https://github.com/wannier-developers/wannier90io-python/issues"
+Source = "https://github.com/wannier-developers/wannier90io-python"
 
 [tool.hatch.build]
 only-packages = true
