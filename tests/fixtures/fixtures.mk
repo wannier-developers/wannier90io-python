@@ -20,6 +20,15 @@ else
 	WRITE_HR = "write_hr=true"
 endif
 
+# Only implemented in version 3.x
+ifeq ($(WANNIER90_VERSION), 2.0.1)
+	WRITE_U_MATRICES = ""
+else ifeq ($(WANNIER90_VERSION), 2.1)
+	WRITE_U_MATRICES = ""
+else
+	WRITE_U_MATRICES = "write_u_matrices=true"
+endif
+
 define modify_win
 	echo $(WRITE_HR) >> wannier.win
 	echo "write_xyz=true" >> wannier.win
@@ -78,6 +87,7 @@ run-example04:
 	$(W90) -pp wannier
 	$(call modify_win)
 	echo "geninterp_alsofirstder=true" >> wannier.win
+	echo $(WRITE_U_MATRICES) >> wannier.win
 	$(W90) wannier
 	$(W90CHK2CHK) -export wannier
 	echo "" >> wannier_geninterp.kpt

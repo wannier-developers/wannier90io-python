@@ -4,5 +4,7 @@ from ._chk import *
 from ._eig import *
 from ._mmn import *
 from ._nnkp import *
+from ._u import *
+from ._unk import *
 from ._win import *
 from ._wout import *

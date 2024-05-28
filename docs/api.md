@@ -6,6 +6,8 @@
 ::: wannier90io.read_amn
 ::: wannier90io.write_amn
 ::: wannier90io.read_chk
+::: wannier90io.read_u
+::: wannier90io.read_unk_formatted
 ::: wannier90io.read_eig
 ::: wannier90io.write_eig
 ::: wannier90io.read_mmn

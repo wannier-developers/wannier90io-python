@@ -119,6 +119,26 @@ def info_chk(args):
     print(chk['have_disentangled'])
 
 
+def info_u(args):
+    with args.file:
+        kpoints, u_matrices = w90io.read_u(args.file)
+
+    print(f'Nk = {u_matrices.shape[0]}')
+    print(f'Nb = {u_matrices.shape[1]}')
+    print(f'Nw = {u_matrices.shape[2]}')
+
+
+def info_unk_formatted(args):
+    with args.file:
+        ik, wvfn = w90io.read_unk_formatted(args.file)
+
+    print(f'ik  = {ik}')
+    print(f'ngx = {wvfn.shape[0]}')
+    print(f'ngy = {wvfn.shape[1]}')
+    print(f'ngz = {wvfn.shape[2]}')
+    print(f'Nb  = {wvfn.shape[3]}')
+
+
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='subparser', required=True)
@@ -157,6 +177,12 @@ def main():
     #
     parser_info_chk = subparsers.add_parser('info-chk', parents=[parser_common])
     parser_info_chk.set_defaults(func=info_chk)
+    #
+    parser_info_u = subparsers.add_parser('info-u', parents=[parser_common])
+    parser_info_u.set_defaults(func=info_u)
+    #
+    parser_info_unk_formatted = subparsers.add_parser('info-unk-formatted', parents=[parser_common])
+    parser_info_unk_formatted.set_defaults(func=info_unk_formatted)
 
     args = parser.parse_args()
     args.func(args)
