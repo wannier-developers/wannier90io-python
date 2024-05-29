@@ -12,7 +12,8 @@ def read_u(stream: typing.TextIO) -> tuple[np.ndarray, np.ndarray]:
     Read unitary matrix file (seedname_u.mat) or the rectangular U_dis matrix
     file (seedname_u_dis.mat).
 
-    Note: for the _u.mat file, num_bands == num_wann.
+    Note:
+        for the _u.mat file, num_bands == num_wann.
 
     Arguments:
         stream: a file-like stream
@@ -20,7 +21,6 @@ def read_u(stream: typing.TextIO) -> tuple[np.ndarray, np.ndarray]:
     Returns:
         kpoint coordinates in fractional coordinates (num_kpts, 3)
         U matrix U(k) or U_dis(k) (num_kpts, num_bands, num_wann)
-
 
     """
     stream.readline()   # header

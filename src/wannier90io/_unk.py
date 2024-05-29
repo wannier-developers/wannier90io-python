@@ -27,7 +27,6 @@ def read_unk_formatted(stream: typing.TextIO) -> tuple[int, np.ndarray]:
         k-point index ik (integer)
         complex wavefunction (ngx, ngy, ngz, Nb)
 
-
     """
     [ngx, ngy, ngz, ik, nbnd] = np.fromstring(stream.readline(), sep=' ', dtype=int)
 
