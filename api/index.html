@@ -1,0 +1,1947 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wannier90 I/O with Python">
+      
+      
+        <meta name="author" content="Jamal Mustafa">
+      
+      
+        <link rel="canonical" href="https://wannier-developers.github.io/wannier90io-python/api/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+    
+    
+      
+        <title>API Reference - Wannier90 I/O with Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Wannier90 I/O with Python" class="md-header__button md-logo" aria-label="Wannier90 I/O with Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wannier90 I/O with Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/wannier-developers/wannier90io-python" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wannier-developers/wannier90io-python
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Wannier90 I/O with Python" class="md-nav__button md-logo" aria-label="Wannier90 I/O with Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Wannier90 I/O with Python
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/wannier-developers/wannier90io-python" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wannier-developers/wannier90io-python
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        API Reference
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_win_raw" class="md-nav__link">
+    parse_win_raw()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_nnkp_raw" class="md-nav__link">
+    parse_nnkp_raw()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_wout_iteration_info" class="md-nav__link">
+    parse_wout_iteration_info()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_amn" class="md-nav__link">
+    read_amn()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.write_amn" class="md-nav__link">
+    write_amn()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_chk" class="md-nav__link">
+    read_chk()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_u" class="md-nav__link">
+    read_u()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_unk_formatted" class="md-nav__link">
+    read_unk_formatted()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_eig" class="md-nav__link">
+    read_eig()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.write_eig" class="md-nav__link">
+    write_eig()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_mmn" class="md-nav__link">
+    read_mmn()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_win_raw" class="md-nav__link">
+    parse_win_raw()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_nnkp_raw" class="md-nav__link">
+    parse_nnkp_raw()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.parse_wout_iteration_info" class="md-nav__link">
+    parse_wout_iteration_info()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_amn" class="md-nav__link">
+    read_amn()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.write_amn" class="md-nav__link">
+    write_amn()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_chk" class="md-nav__link">
+    read_chk()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_u" class="md-nav__link">
+    read_u()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_unk_formatted" class="md-nav__link">
+    read_unk_formatted()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_eig" class="md-nav__link">
+    read_eig()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.write_eig" class="md-nav__link">
+    write_eig()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wannier90io.read_mmn" class="md-nav__link">
+    read_mmn()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="api-reference">API Reference</h1>
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.parse_win_raw" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">parse_win_raw</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Parse WIN</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>string</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>the WIN text</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>the parsed WIN</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_win.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_win_raw</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse WIN</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        string: the WIN text</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the parsed WIN</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">extract_comments</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">parse_parameters</span><span class="p">(</span><span class="n">_core</span><span class="o">.</span><span class="n">extract_parameters</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">parse_blocks</span><span class="p">(</span><span class="n">_core</span><span class="o">.</span><span class="n">extract_blocks</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+
+    <span class="n">parsed_win</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;comments&#39;</span><span class="p">:</span> <span class="n">comments</span><span class="p">,</span>
+        <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span>
+        <span class="s1">&#39;blocks&#39;</span><span class="p">:</span> <span class="n">blocks</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="s1">&#39;unit_cell_cart&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_win</span><span class="p">[</span><span class="s1">&#39;unit_cell_cart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_unit_cell</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;unit_cell_cart&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s1">&#39;atoms_cart&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_win</span><span class="p">[</span><span class="s1">&#39;atoms_cart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_atoms</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;atoms_cart&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s1">&#39;atoms_frac&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_win</span><span class="p">[</span><span class="s1">&#39;atoms_frac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_atoms</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;atoms_frac&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s1">&#39;projections&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_win</span><span class="p">[</span><span class="s1">&#39;projections&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_projections</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;projections&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s1">&#39;kpoints&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_win</span><span class="p">[</span><span class="s1">&#39;kpoints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_kpoints</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;kpoints&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">parsed_win</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.parse_nnkp_raw" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">parse_nnkp_raw</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Parse NNKP</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>string</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>the NNKP text</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>the parsed NNKP</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_nnkp.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_nnkp_raw</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse NNKP</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        string: the NNKP text</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the parsed NNKP</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">extract_comments</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">parse_parameters</span><span class="p">(</span><span class="n">_core</span><span class="o">.</span><span class="n">extract_parameters</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="n">_core</span><span class="o">.</span><span class="n">parse_blocks</span><span class="p">(</span><span class="n">_core</span><span class="o">.</span><span class="n">extract_blocks</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+
+    <span class="n">parsed_nnkp</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;comments&#39;</span><span class="p">:</span> <span class="n">comments</span><span class="p">,</span>
+        <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span>
+        <span class="s1">&#39;blocks&#39;</span><span class="p">:</span> <span class="n">blocks</span><span class="p">,</span>
+        <span class="s1">&#39;direct_lattice&#39;</span><span class="p">:</span> <span class="n">parse_direct_lattice</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;real_lattice&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;reciprocal_lattice&#39;</span><span class="p">:</span> <span class="n">parse_reciprocal_lattice</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;recip_lattice&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;kpoints&#39;</span><span class="p">:</span> <span class="n">parse_kpoints</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;kpoints&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;nnkpts&#39;</span><span class="p">:</span> <span class="n">parse_nnkpts</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;nnkpts&#39;</span><span class="p">]),</span>
+        <span class="s1">&#39;exclude_bands&#39;</span><span class="p">:</span> <span class="n">parse_exclude_bands</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;exclude_bands&#39;</span><span class="p">]),</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="s1">&#39;projections&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_nnkp</span><span class="p">[</span><span class="s1">&#39;projections&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_projections</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;projections&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="s1">&#39;spinor_projections&#39;</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
+        <span class="n">parsed_nnkp</span><span class="p">[</span><span class="s1">&#39;spinor_projections&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_spinor_projections</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="s1">&#39;spinor_projections&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">parsed_nnkp</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.parse_wout_iteration_info" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">parse_wout_iteration_info</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Parse WOUT iteration info</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>the parsed WOUT iteration info</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_wout.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_wout_iteration_info</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse WOUT iteration info</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        the parsed WOUT iteration info</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">convergence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">spread</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">disentanglement</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stream</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;convergence_line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">convergence</span> <span class="o">+=</span> <span class="p">[{</span>
+                <span class="s1">&#39;iter&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;iter&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;delta&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;delta&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;gradient&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;gradient&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;spread&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;spread&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)),</span>
+            <span class="p">}]</span>
+
+        <span class="n">match</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;spread_line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">spread</span> <span class="o">+=</span> <span class="p">[{</span>
+                <span class="s1">&#39;omega_d&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_d&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_od&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_od&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_tot&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_tot&#39;</span><span class="p">)),</span>
+            <span class="p">}]</span>
+
+        <span class="n">match</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;delta_line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">+=</span> <span class="p">[{</span>
+                <span class="s1">&#39;omega_d&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_d&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_od&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_od&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_tot&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_tot&#39;</span><span class="p">)),</span>
+            <span class="p">}]</span>
+
+        <span class="n">match</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">[</span><span class="s1">&#39;disentanglement_line&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">disentanglement</span> <span class="o">+=</span> <span class="p">[{</span>
+                <span class="s1">&#39;iter&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;iter&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_i_i&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_i_i&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;omega_i_f&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;omega_i_f&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;delta&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;delta&#39;</span><span class="p">)),</span>
+                <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)),</span>
+            <span class="p">}]</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;convergence&#39;</span><span class="p">:</span> <span class="n">convergence</span><span class="p">,</span>
+        <span class="s1">&#39;spread&#39;</span><span class="p">:</span> <span class="n">spread</span><span class="p">,</span>
+        <span class="s1">&#39;delta&#39;</span><span class="p">:</span> <span class="n">delta</span><span class="p">,</span>
+        <span class="s1">&#39;disentanglement&#39;</span><span class="p">:</span> <span class="n">disentanglement</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_amn" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_amn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read projections matrix</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>projections matrix (Nk, Nb, Np)</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_amn.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_amn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read projections matrix</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        projections matrix (Nk, Nb, Np)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+    <span class="p">[</span><span class="n">Nb</span><span class="p">,</span> <span class="n">Nk</span><span class="p">,</span> <span class="n">Np</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">Nb</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">amn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">raw_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">amn</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.write_amn" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">write_amn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">,</span> <span class="n">amn</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">header</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;HEADER&#39;</span><span class="p">)</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Write projections matrix</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>amn</code></td>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>projections matrix (Nk, Nb, Np)</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>header</code></td>
+          <td>
+                <code>typing.<span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>header</p></td>
+          <td>
+                <code>&#39;HEADER&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_amn.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_amn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">,</span> <span class="n">amn</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">header</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;HEADER&#39;</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write projections matrix</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+<span class="sd">        amn: projections matrix (Nk, Nb, Np)</span>
+<span class="sd">        header: header</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nb</span><span class="p">,</span> <span class="n">Np</span><span class="p">)</span> <span class="o">=</span> <span class="n">amn</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[:</span><span class="n">Nb</span><span class="p">,</span> <span class="p">:</span><span class="n">Np</span><span class="p">,</span> <span class="p">:</span><span class="n">Nk</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">amn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">amn</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">indices</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">amn</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Nb</span><span class="si">:</span><span class="s1">12d</span><span class="si">}{</span><span class="n">Nk</span><span class="si">:</span><span class="s1">12d</span><span class="si">}{</span><span class="n">Np</span><span class="si">:</span><span class="s1">12d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%5d%5d%5d%18.12f%18.12f</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_chk" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_chk</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read checkpoint</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>dict</code>
+          </td>
+          <td><p>dict</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_chk.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_chk</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read checkpoint</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chk</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_exclude_bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_exclude_bands&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_exclude_bands&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;real_lattice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;recip_lattice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_kpts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;mp_grid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;kpt_latt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_kpts&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_kpts&#39;</span><span class="p">]):</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;kpt_latt&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;nntot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nn</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;num_wann&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nw</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;checkpoint&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;have_disentangled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;have_disentangled&#39;</span><span class="p">]:</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;omega_invariant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;lwindow&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">Nk</span><span class="o">*</span><span class="n">Nb</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nb</span><span class="p">))</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;nwindim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="n">Nk</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;u_matrix_opt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">Nk</span><span class="o">*</span><span class="n">Nw</span><span class="o">*</span><span class="n">Nb</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nw</span><span class="p">,</span> <span class="n">Nb</span><span class="p">))</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;u_matrix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">Nk</span><span class="o">*</span><span class="n">Nw</span><span class="o">*</span><span class="n">Nw</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nw</span><span class="p">,</span> <span class="n">Nw</span><span class="p">,</span> <span class="n">Nk</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">chk</span><span class="p">[</span><span class="s1">&#39;m_matrix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">Nk</span><span class="o">*</span><span class="n">Nn</span><span class="o">*</span><span class="n">Nw</span><span class="o">*</span><span class="n">Nw</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nw</span><span class="p">,</span> <span class="n">Nw</span><span class="p">,</span> <span class="n">Nn</span><span class="p">,</span> <span class="n">Nk</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">chk</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_u" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_u</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read unitary matrix file (seedname_u.mat) or the rectangular U_dis matrix
+file (seedname_u_dis.mat).</p>
+
+<details class="note">
+  <summary>Note</summary>
+  <p>for the _u.mat file, num_bands == num_wann.</p>
+</details>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>kpoint coordinates in fractional coordinates (num_kpts, 3)</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>U matrix U(k) or U_dis(k) (num_kpts, num_bands, num_wann)</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_u.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_u</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read unitary matrix file (seedname_u.mat) or the rectangular U_dis matrix</span>
+<span class="sd">    file (seedname_u_dis.mat).</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        for the _u.mat file, num_bands == num_wann.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        kpoint coordinates in fractional coordinates (num_kpts, 3)</span>
+<span class="sd">        U matrix U(k) or U_dis(k) (num_kpts, num_bands, num_wann)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>   <span class="c1"># header</span>
+
+    <span class="p">[</span><span class="n">nkpt</span><span class="p">,</span> <span class="n">num_wann</span><span class="p">,</span> <span class="n">num_bands</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">u_matrices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nkpt</span><span class="p">,</span> <span class="n">num_bands</span><span class="p">,</span> <span class="n">num_wann</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">kpoints</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">ikpt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nkpt</span><span class="p">):</span>
+        <span class="n">empty</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>   <span class="c1"># header</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">empty</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;Expected empty line but found instead: &#39;</span><span class="si">{</span><span class="n">empty</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+        <span class="n">kpoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">kpoint</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="n">kpoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kpoint</span><span class="p">)</span>
+        <span class="n">u_matrices</span><span class="p">[</span><span class="n">ikpt</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">num_wann</span> <span class="o">*</span> <span class="n">num_bands</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">num_bands</span><span class="p">,</span> <span class="n">num_wann</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kpoints</span><span class="p">),</span> <span class="n">u_matrices</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_unk_formatted" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_unk_formatted</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read wavefunction files (UNKnnnnn.n files) in formatted format.</p>
+<p>Note that the UNK files must have been created using the <code>wvfn_formatted</code>
+option set to True in the interface code (e.g. pw2wannier90.x for the
+Quantum ESPRESSO interface). Note that this is <em>not</em> the default, however
+for reading into an external code, this is recommended for portability.</p>
+
+<details class="note">
+  <summary>Note</summary>
+  <p>for now only works in the non-spinor case.
+Spinor case still to be implemented.</p>
+</details>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>k-point index ik (integer)</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>complex wavefunction (ngx, ngy, ngz, Nb)</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_unk.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_unk_formatted</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read wavefunction files (UNKnnnnn.n files) in formatted format.</span>
+
+<span class="sd">    Note that the UNK files must have been created using the `wvfn_formatted`</span>
+<span class="sd">    option set to True in the interface code (e.g. pw2wannier90.x for the</span>
+<span class="sd">    Quantum ESPRESSO interface). Note that this is *not* the default, however</span>
+<span class="sd">    for reading into an external code, this is recommended for portability.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">       for now only works in the non-spinor case.</span>
+<span class="sd">       Spinor case still to be implemented.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        k-point index ik (integer)</span>
+<span class="sd">        complex wavefunction (ngx, ngy, ngz, Nb)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">[</span><span class="n">ngx</span><span class="p">,</span> <span class="n">ngy</span><span class="p">,</span> <span class="n">ngz</span><span class="p">,</span> <span class="n">ik</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">wvfn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ngx</span><span class="p">,</span> <span class="n">ngy</span><span class="p">,</span> <span class="n">ngz</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ibnd</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbnd</span><span class="p">):</span>
+        <span class="n">wvfn</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">ibnd</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">ngx</span> <span class="o">*</span> <span class="n">ngy</span> <span class="o">*</span> <span class="n">ngz</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">ngx</span><span class="p">,</span> <span class="n">ngy</span><span class="p">,</span> <span class="n">ngz</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">ik</span><span class="p">,</span> <span class="n">wvfn</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_eig" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_eig</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read eigenvalues matrix</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>eigenvalues matrix (Nk, Nb)</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_eig.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_eig</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read eigenvalues matrix</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        eigenvalues matrix (Nk, Nb)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+
+    <span class="n">Nb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">Nk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">eig</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nb</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">eig</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.write_eig" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">write_eig</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">,</span> <span class="n">eig</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Write eigenvalues matrix</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>eig</code></td>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>eigenvalues matrix (Nk, Nb)</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_eig.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_eig</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">,</span> <span class="n">eig</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write eigenvalues matrix</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+<span class="sd">        eig: eigenvalues matrix (Nk, Nb)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nb</span><span class="p">)</span> <span class="o">=</span> <span class="n">eig</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[:</span><span class="n">Nb</span><span class="p">,</span> <span class="p">:</span><span class="n">Nk</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nk</span><span class="o">*</span><span class="n">Nb</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">indices</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">eig</span><span class="o">.</span><span class="n">flatten</span><span class="p">()))</span>
+
+    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%5d%5d%18.12f</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="wannier90io.read_mmn" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">wannier90io</span><span class="o">.</span><span class="n">read_mmn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span></code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Read overlaps matrix</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>stream</code></td>
+          <td>
+                <code>typing.<span title="typing.TextIO">TextIO</span></code>
+          </td>
+          <td><p>a file-like stream</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>overlaps matrix (Nk, Nn, Nb, Nb)</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="numpy">np</span>.<span title="numpy.ndarray">ndarray</span></code>
+          </td>
+          <td><p>nnkps (Nk, Nn, 5)</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>wannier90io/_mmn.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_mmn</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">TextIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read overlaps matrix</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        stream: a file-like stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        overlaps matrix (Nk, Nn, Nb, Nb)</span>
+<span class="sd">        nnkps (Nk, Nn, 5)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>   <span class="c1"># header</span>
+
+    <span class="p">[</span><span class="n">Nb</span><span class="p">,</span> <span class="n">Nk</span><span class="p">,</span> <span class="n">Nn</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">mmn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nn</span><span class="p">,</span> <span class="n">Nb</span><span class="p">,</span> <span class="n">Nb</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">nnkpts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nk</span><span class="p">,</span> <span class="n">Nn</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">ik</span><span class="p">,</span> <span class="n">ikb</span><span class="p">)</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">Nk</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nn</span><span class="p">)):</span>
+        <span class="n">nnkpts</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="n">ikb</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">readline</span><span class="p">(),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">mmn</span><span class="p">[</span><span class="n">ik</span><span class="p">,</span> <span class="n">ikb</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="p">(</span><span class="n">Nb</span><span class="o">*</span><span class="n">Nb</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nb</span><span class="p">,</span> <span class="n">Nb</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+    <span class="n">nnkpts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">nnkpts</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">mmn</span><span class="p">,</span> <span class="n">nnkpts</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+    </div>
+
+  </div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/wannier-developers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
+      
+    
+  </body>
+</html>
